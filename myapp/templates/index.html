@@ -4,26 +4,27 @@
 
 	<meta charset="utf-8">
 	<title>Dike Kalu </title> 
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
     <link href='http://fonts.googleapis.com/css?family=Cutive+Mono|Fredericka+the+Great' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 </head>
 
 <body>
 	
 
 	<div id="main">
-		<h1>Dike E. Kalu</h1>
-		<div class="main-item">
-			<a href="http://blog.dikekalu.com">blog</a>
+		<div class="header">
+			<a href="/" id="myname">Dike E. Kalu</span>
+			<a class="main-item" href="http://twitter.com/dikekalu" target="_blank">.twitter</a>
+			<a class="main-item" href="http://github.com/dikee" target="_blank">.github</a>
+		</div><hr>
+
+		<div id="content">
+			{% block content %}{% endblock %}
 		</div>
 
-		<div class="main-item">
-			<a href="http://twitter.com/dikekalu">twitter</a>
-		</div>
 
-		<div class="main-item">
-			<a href="http://github.com/dikee">github</a>
-		</div>
 
 
 	</div>
@@ -32,37 +33,17 @@
 
 
 
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<!-- <script type="text/javascript" src="/static/js/numeral.min.js"></script> -->
+<script type="text/javascript" src="/static/js/uw.js"></script>
 
 
 
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap-datepicker.js"></script>
 
 </body>
 
-<style> 
-    <!--
-	body {background-color: #fafafa;}
-	h1 {
-		font-family: 'Fredericka the Great', cursive;
-		font-size: 72px;
-		font-style: bold;
-		}
-
-	#main {
-		margin-left: 34%;
-	}
-
-	.main-item {
-		font-family: 'Fredericka the Great', cursive;
-		font-size: 33px;
-		padding-bottom: 45px;
-	}
-
-	.main-item a {
-		text-decoration: none;
-		color: #000000;
-	}
-    -->
-   </style>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

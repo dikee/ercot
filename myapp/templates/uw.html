@@ -1,0 +1,162 @@
+{% extends "index.html" %}
+{% block content %}
+    <link rel="stylesheet" href="/static/css/uwapp.css">
+
+    <div style="display:none;" id="uniqueid">{{claims.unique_iden}}</div>
+    
+<div id="data-table">
+	<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
+  View source data
+</button><hr>
+	<div class="table-responsive">
+		<div id="datestuff">
+			<b>Experience Period:</b> <input id="experience_period_start" data-provide="datepicker"> to <span id="experience_period_end"></span><br><br>    
+			<b>Projection Period:</b> <input id="projected_period_start" data-provide="datepicker">  to <span id="projected_period_end"></span></hr>
+		</div>
+  		<table class="table table-striped">
+	  		<tr>
+	  			<th></th>
+	  			<th>Medical</th> 
+	  			<th>Rx</th>
+	  			<th>Total</th>
+			</tr>
+
+			<tr>
+	  			<td>Months of Lag</td> 
+	  			<td><input type="text" class="form-control col-xs-2" id="med_month_of_lag"></td> 
+	  			<td><input type="text" class="form-control" id="rx_month_of_lag"></td>
+	  			<td></td>
+			</tr>
+
+			<tr>
+	  			<td>Average Lag Enrollment</td>
+	  			<td><span id="med_average_lag_enrollment"></span></td> 
+	  			<td><span id="rx_average_lag_enrollment"></span></td>
+	  			<td></td>
+			</tr>
+
+			<tr>
+	  			<td>Per Employee Per Month Cost</td>
+	  			<td><span id="med_pepm_cost"></span></td> 
+	  			<td><span id="rx_pepm_cost"></span></td>
+	  			<td><span id="total_pepm_cost"></span></td>
+	  			<td></td>
+			</tr>
+
+			<tr>
+	  			<td>Per Employee Per Month Cost Stop Loss Reimbursement</td>
+	  			<td><span id="med_stop_loss_reimbursement"></span></td> 
+	  			<td><span id="rx_stop_loss_reimbursement"></span></td>
+	  			<td><span id="total_stop_loss_reimbursement"></span></td>
+	  			<td></td>
+			</tr>
+
+			<tr>
+	  			<td>Per Employee Per Month Cost Net Stop Loss</td>
+	  			<td><span id="med_net_stop_loss_reimbursement"></span></td> 
+	  			<td><span id="rx_net_stop_loss_reimbursement"></span></td>
+	  			<td><span id="total_net_stop_loss_reimbursement"></span></td>
+	  			<td></td>
+			</tr>
+
+			<tr>
+	  			<td>Expected Trend</td>
+	  			<td><input type="text" id="med_expected_trend" class="form-control col-xs-2" placeholder=""></td> 
+	  			<td><input type="text" id="rx_expected_trend" class="form-control col-xs-2" placeholder=""></td>
+	  			<td></td>
+			</tr>
+
+			<tr>
+	  			<td>Midpoint Months</td>
+	  			<td><span id="med_midpoint_month"></span></td> 
+	  			<td><span id="rx_midpoint_month"></span></td>
+	  			<td></td>
+			</tr>
+
+			<tr>
+	  			<td>Utilized Trend</td>
+	  			<td><span id="med_utilized_trend"></span></td> 
+	  			<td><span id="rx_utilized_trend"></span></td>
+	  			<td></td>
+			</tr>
+
+			<tr>
+	  			<td>Projected Per Employee Per Month Cost</td>
+	  			<td><span id="med_projected_pepm"></span></td> 
+	  			<td><span id="rx_projected_pepm"></span></td>
+	  			<td><span id="total_projected_pepm"></span></td>
+			</tr>
+
+			<tr>
+	  			<td>Margin</td>
+	  			<td><input type="text" id="med_margin" class="form-control col-xs-2" placeholder=""></td> 
+	  			<td><input type="text" id="rx_margin" class="form-control col-xs-2" placeholder=""></td>
+	  			<td></td>
+			</tr>
+
+			<tr>
+	  			<td>Projected PEPM Claims After Margin</td>
+	  			<td><span id="med_pepm_proj_after_margin"></span></td> 
+	  			<td><span id="rx_pepm_proj_after_margin"></span></td>
+	  			<td><span id="total_pepm_proj_after_margin"></span></td>
+			</tr>
+
+			<tr>
+	  			<td>Estimated Future Average Enrollment</td>
+	  			<td><input type="text" id="med_est_future_avg_enroll" class="form-control col-xs-2" placeholder=""></td> 
+	  			<td><input type="text" id="rx_est_future_avg_enroll" class="form-control col-xs-2" placeholder=""></td>
+	  			<td></td>
+			</tr>
+
+			<tr>
+	  			<td>Final Claims Dollars</td>
+	  			<td><span id="med_final_claims_dollars"></span></td> 
+	  			<td><span id="rx_final_claims_dollars"></span></td>
+	  			<td><span id="total_final_claims_dollars"></span></td>
+			</tr>
+
+		</table>
+	</div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Input Data</h4>
+      </div>
+      <div class="modal-body">
+        	<div id="claims-table">
+				<table class="table table-striped">
+			  		<tr>
+			  			<th>Month</th>
+			  			<th># Employees</th> 
+			  			<th>Med Cost</th>
+			  			<th>Rx Cost</th>
+			  			<th>Stop Loss Reim</th>
+					</tr>
+					{% for entry in claims.entries %}			
+					<tr>
+			  			<td>{{entry.date}}</td>
+			  			<td>{{entry.ee_count}}</td>
+			  			<td>{{entry.med_cost}}</td>
+			  			<td>{{entry.rx_cost}}</td>
+			  			<td>{{entry.sl_reim}}</td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

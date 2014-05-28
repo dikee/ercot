@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div id="uwapp-body">
+	<link rel="stylesheet" href="/static/css/uwapp.css">
+	<div id="title">Underwriting App</div>
+
+	<div id="assoc">
+		Associated note(s): <a href="/writing/uwonmind">note 1</a></br>
+		<a href="#">log in (coming soon)</a>
+	</div>
+
+	<div id="instructions">
+		<ul>
+			<li>Note: This is intended only for illustrative purposes. Please don't use this for serious work. </li>
+			<li>
+				Step 1: Import a CSV file with 5 columns in this order, Date, # employees (not lagged), gross medical claims, gross rx claims, stop loss reimbursement. <b>A header row is required!</b>
+			</li>
+			<li>
+				Step 2: Interact with projection using the text boxes on the next page.
+			</li>
+			<li>
+				Step 3: Tell me what you think: <a href="http://twitter.com/dikekalu">@dikekalu</a>, <a href="mailto:dike@dikekalu.com">dike@dikekalu.com</a>
+			</li>
+
+		</ul>		
+	</div>
+
+	<div id="start">
+		<h3>Upload your file to start! <a href="/underwrite/9dqt0">(...or see completed example)</a></h3>
+		<div id="message">
+			{% if message %}{{message}}{% endif %}
+		</div>
+		<form action="/uwapp" method="post" enctype="multipart/form-data">
+      		<p><input type="file" name="file"><br>
+      		<button type="submit" class="btn btn-primary">Upload</button>
+    	</form>
+	</div>
+
+
+</div>
+
+{% endblock %}

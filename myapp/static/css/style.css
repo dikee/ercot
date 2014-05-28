@@ -1,0 +1,116 @@
+	body {background-color: #fafafa;}
+	#myname {
+		font-family: 'Fredericka the Great', cursive;
+		font-size: 33px;
+		font-style: bold;
+		}
+
+	#main {
+		margin-left: 5%;
+	}
+
+	.main-item {
+		font-family: 'Fredericka the Great', cursive;
+		font-size: 22px;
+		padding-left: 19px;
+		/*padding-bottom: 45px;*/
+	}
+
+	.header a {
+		text-decoration: none;
+		color: #000000;
+	}
+
+	.inline {
+		float: left;
+	}
+
+#content {
+	margin-top: 30px;
+	
+}
+
+.item {
+	margin-bottom: 30px;
+}
+
+.title {
+	font-family: 'Source Code Pro';
+	font-size: 22px;
+	font-weight: bold;
+	margin-bottom: 7px;
+}
+
+.body {
+	font-family: 'Source Code Pro';
+	font-size: 14px;
+
+}
+
+.title a {
+		text-decoration: none;
+		color: #000000;
+	}
+
+#fixtures {
+	
+	float: right;
+	width: 32%;
+	/*border: 1px solid red;*/
+}
+
+#fixtures #perm {
+	font-family: 'Fredericka the Great', cursive;
+	font-size: 22px;
+	padding-left: 19px;
+	padding-bottom: 12px;
+}
+
+#fixtures #perm {
+	font-family: 'Fredericka the Great', cursive;
+	font-size: 22px;
+	padding-left: 19px;
+}
+
+#fixtures a {
+		text-decoration: none;
+		color: #000000;
+	}
+
+#writings {
+	float: left;
+	width: 65%;
+	/*border: 1px solid red;*/
+}
+
+.screw {
+	content: url('/static/img/screw.png');
+	width: 20px;
+	height: auto;
+	padding-right: 3px;
+}
+
+.entry {
+	font-family: 'Source Code Pro';
+	font-size: 22px;
+}
+
+.item {
+	margin-bottom: 40px;
+}
+
+.date {
+	font-size: 11px;
+	font-style: italic;
+	padding-bottom: 15px;
+}
+
+.witem {
+	padding-right: 80px;
+	padding-left: 22px;
+}
+
+.witem .body {
+	line-height:160%;
+
+}

@@ -1,0 +1,49 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="witem">
+		<div class="title">
+			Underwriting on the mind
+			<div class="date">May 28, 2013</div>
+		</div>
+
+		<div class="body">
+			<p>Thinking back to my employee benefit industry years, there were many processes I wish I had time to automate or write an app for. </p>
+
+			<p> Medical underwriting is one of them.</p>
+
+			<p>
+			I have some time today so I decided to write a medical underwriting app. For non-insurance folk, this process simply uses a company's past medical claims costs to project out how much it should cost.</p>
+
+			<p>
+			This is a very basic version meant mostly for illustrative purposes. It only works for a regular run-of-the-mill PPO plan. Also, there are many scenarios that aren't reflected. In fact, the large number of possible scenarios is the reason why Excel has such a stronghold in the insurance industry. Excel allows you to make changes on the fly.
+			</p>
+
+			<p>
+			There are a lot of advantages to automating processes like this: analytics, error reduction, training, documentation, etc. Some companies offer full-featured underwriting apps, however, I'm yet to see it done in an approchable format.
+			</p>
+
+
+			<p>
+			If you're one of the three people that reads this, let me know if you find any issues or improvements.
+			</p>
+			<p>Without further ado, <a href="/uwapp">click here to play with the app.</a></p>
+			</p>
+
+			<hr>
+			<b>Future upgrades/updates</b>
+			<ul>
+				<li> Change assumptions on page (esp proj. start date) </li>
+				<li> Upgrade UI </li>
+				<li> Allow for saving work over sessions </li>
+				<li> Add tooltips to explain steps </li>
+
+			</ul>
+		</div>
+	</div>
+
+
+
+
+
+{% endblock %}
