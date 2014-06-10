@@ -98,7 +98,6 @@ var change_values = function(value_list) {
 	$.post(url, json)
 		.done(function(data){
 
-			console.log(data.result);
 			if(data.result == 'success') {
 			update_values(data);
 				} else {
