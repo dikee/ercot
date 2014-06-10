@@ -3,16 +3,21 @@
     <link rel="stylesheet" href="/static/css/uwapp.css">
 
     <div style="display:none;" id="uniqueid">{{claims.unique_iden}}</div>
-    
-<div id="data-table">
+	<div id="data-table">
 	<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
   View source data
-</button><hr>
+</button>
+
+
+<hr>
+
+
 	<div class="table-responsive">
 		<div id="datestuff">
-			<b>Experience Period:</b> <input id="experience_period_start" data-provide="datepicker"> to <span id="experience_period_end"></span><br><br>    
-			<b>Projection Period:</b> <input id="projected_period_start" data-provide="datepicker">  to <span id="projected_period_end"></span></hr>
+			<b>Experience Period:</b> <!-- <input id="experience_period_start" class="updatable" data-provide="datepicker"> --><span id="experience_period_start"></span> to <span id="experience_period_end"></span><br>
+			<b>Projection Period:</b> <input id="projected_period_start" class="updatable" data-provide="datepicker">  to <span id="projected_period_end"></span></hr>
 		</div>
+		<div id="error"></div>
   		<table class="table table-striped">
 	  		<tr>
 	  			<th></th>
@@ -23,8 +28,8 @@
 
 			<tr>
 	  			<td>Months of Lag</td> 
-	  			<td><input type="text" class="form-control col-xs-2" id="med_month_of_lag"></td> 
-	  			<td><input type="text" class="form-control" id="rx_month_of_lag"></td>
+	  			<td><input type="text"  class="updatable" class="form-control col-xs-2" id="med_month_of_lag"></td> 
+	  			<td><input type="text" class="updatable" class="form-control" id="rx_month_of_lag"></td>
 	  			<td></td>
 			</tr>
 
@@ -61,8 +66,8 @@
 
 			<tr>
 	  			<td>Expected Trend</td>
-	  			<td><input type="text" id="med_expected_trend" class="form-control col-xs-2" placeholder=""></td> 
-	  			<td><input type="text" id="rx_expected_trend" class="form-control col-xs-2" placeholder=""></td>
+	  			<td><input type="text" class="updatable" id="med_expected_trend" class="form-control col-xs-2" placeholder=""></td> 
+	  			<td><input type="text"  class="updatable" id="rx_expected_trend" class="form-control col-xs-2" placeholder=""></td>
 	  			<td></td>
 			</tr>
 
@@ -89,8 +94,8 @@
 
 			<tr>
 	  			<td>Margin</td>
-	  			<td><input type="text" id="med_margin" class="form-control col-xs-2" placeholder=""></td> 
-	  			<td><input type="text" id="rx_margin" class="form-control col-xs-2" placeholder=""></td>
+	  			<td><input type="text" class="updatable" id="med_margin" class="form-control col-xs-2" placeholder=""></td> 
+	  			<td><input type="text" class="updatable" id="rx_margin" class="form-control col-xs-2" placeholder=""></td>
 	  			<td></td>
 			</tr>
 
@@ -103,8 +108,8 @@
 
 			<tr>
 	  			<td>Estimated Future Average Enrollment</td>
-	  			<td><input type="text" id="med_est_future_avg_enroll" class="form-control col-xs-2" placeholder=""></td> 
-	  			<td><input type="text" id="rx_est_future_avg_enroll" class="form-control col-xs-2" placeholder=""></td>
+	  			<td><input type="text" class="updatable" id="med_est_future_avg_enroll" class="form-control col-xs-2" placeholder=""></td> 
+	  			<td><input type="text" class="updatable" id="rx_est_future_avg_enroll" class="form-control col-xs-2" placeholder=""></td>
 	  			<td></td>
 			</tr>
 
@@ -122,7 +127,7 @@
 
 
 
-<!-- Modal -->
+<!-- Modal for source data -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -158,5 +163,6 @@
     </div>
   </div>
 </div>
+<!-- End Modal for source data -->
 
 {% endblock %}

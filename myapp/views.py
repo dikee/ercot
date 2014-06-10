@@ -2,12 +2,13 @@ from myapp import app
 from flask import render_template, jsonify, request, redirect, url_for
 from werkzeug.utils import secure_filename
 from models import Entry
-from l_helpers import allowed_file, UW_UPLOAD_FOLDER, generate_file_name, parse_csv
+from l_helpers import allowed_file, UW_UPLOAD_FOLDER, generate_file_name, parse_csv, get_month_number
 import os
 from q_uw import get_uw_example_by_unique
 import math
-from datetime import date
+from datetime import date, timedelta
 import json
+from myapp import db
 
 
 @app.route('/')
@@ -19,6 +20,91 @@ def index():
 def underwrite(uw_unique):
     claims = get_uw_example_by_unique(uw_unique)
     return render_template('uw.html', claims=claims)
+
+
+@app.route('/changeassumptions/<uw_unique>', methods=['POST'])
+def change_assumptions(uw_unique):
+    claims = get_uw_example_by_unique(uw_unique)
+    attribute = request.form['attribute']
+    new_value = request.form['new_value']
+
+    if attribute == 'projected_period_start':
+        # import pdb; pdb.set_trace()
+        try:
+            new_value = new_value.split('-')
+            month = new_value[0]
+            year = new_value[1]
+            proj_start_date = date(int(year), get_month_number(month), 1)
+            proxy_date = proj_start_date + timedelta(370)
+            if proxy_date.month == 1:
+                proj_end_date = date(proxy_date.year - 1, 12, 1)
+            else:
+                proj_end_date = date(proxy_date.year, proxy_date.month - 1, 1)
+
+            if proj_start_date <= claims.entries[0].date:
+                return jsonify({"error_value": "Date must be after experience period"})
+
+            claims.proj_start_date = proj_start_date
+            claims.proj_end_date = proj_end_date
+            db.session.commit()
+        except:
+            return jsonify({"error_value": "Date is Not Valid"})
+
+    if attribute == 'med_month_of_lag':
+        if int(new_value) < 4:
+            claims.lag_med = int(new_value)
+            db.session.commit()
+        else:
+            return jsonify({"error_value": "Lag must be less than 4"})
+
+    if attribute == 'rx_month_of_lag':
+        if int(new_value) < 4:
+            claims.lag_rx = int(new_value)
+            db.session.commit()
+        else:
+            return jsonify({"error_value": "Lag must be less than 4"})
+
+    if attribute == 'med_expected_trend':
+        if float(new_value) >= 0 and float(new_value) <= 1:
+            claims.med_trend = float(new_value)
+            db.session.commit()
+        else:
+            return jsonify({"error_value": "Trend must be between 0 and 1"})
+
+    if attribute == 'rx_expected_trend':
+        if float(new_value) >= 0 and float(new_value) <= 1:
+            claims.rx_trend = float(new_value)
+            db.session.commit()
+        else:
+            return jsonify({"error_value": "Trend must be between 0 and 1"})
+
+    if attribute == 'med_margin':
+        if float(new_value) < 4:
+            claims.med_margin_perc = float(new_value)
+            db.session.commit()
+        else:
+            return jsonify({"error_value": "Margin must be less than 4"})
+
+    if attribute == 'rx_margin':
+        if float(new_value) < 4:
+            claims.rx_margin_perc = float(new_value)
+            db.session.commit()
+        else:
+            return jsonify({"error_value": "Margin must be less than 4"})
+
+    if attribute == 'med_est_future_avg_enroll' or attribute == 'rx_est_future_avg_enroll':
+        if int(new_value) > 0:
+            claims.proj_annual_enroll = int(new_value)
+            db.session.commit()
+        else:
+            return jsonify({"error_value": "Future enrollment must be a non-zero number"})
+
+    return redirect(url_for('uw_calc', uw_unique=uw_unique))
+
+
+    # med_est_future_avg_enroll uw.js:9
+    # rx_est_future_avg_enroll 
+    # return redirect(url_for('uw_calc', uw_unique=uw_unique))
 
 
 @app.route('/uwapp', methods=['GET', 'POST'])
