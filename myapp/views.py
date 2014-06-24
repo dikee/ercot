@@ -134,6 +134,9 @@ def writing(slug):
     return render_template(file_name)
 
 
+# writings end
+
+
 @app.route('/uwcalc/<uw_unique>')
 def uw_calc(uw_unique):
     claims = get_uw_example_by_unique(uw_unique)

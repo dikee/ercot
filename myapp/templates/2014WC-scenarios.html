@@ -1,0 +1,129 @@
+{% extends "index.html" %}
+{% block content %}
+
+<div class="witem">
+		<div class="title">
+			World Cup 2014 - Advancement Scenarios for Group F
+			<div class="date">June 24, 2013</div>
+		</div>
+
+
+		<div class="body">
+			<div class="message">
+				
+			</div>
+			<div class="panel panel-success">
+  				<div class="panel-heading">Group F: Argentina, Bosnia-Herzegovina, Iran, Nigeria<a style="float:right;" href="mailto:dike@dikekalu.com"> report issue </a></div>
+
+  				<div class="panel-body">
+    				<div class="standings">
+
+    					<table class="table table-striped standings-table">
+
+    					</table>
+    				</div>
+
+    				<div class="match-scores">
+    					<div class="score-box">
+    						<span>ARG 2 - BIH 1</span><span class="match-date"><a href="http://www.fifa.com/worldcup/matches/round=255931/match=300186477/index.html#nosticky" target="_blank">June 15</a></span><br>
+    					</div>
+    					<div class="score-box">
+    						<span>IRN 0 - NGR 0</span><span class="match-date"><a href="http://www.fifa.com/worldcup/matches/round=255931/match=300186505/index.html#nosticky" target="_blank">June 16</a></span>
+    					</div>
+    					
+    					<div class="score-box">
+    						<span>ARG 1 - IRN 0</span><span class="match-date"><a href="http://www.fifa.com/worldcup/matches/round=255931/match=300186466/index.html#nosticky" target="_blank">June 21</a></span>
+    					</div>
+    					<div class="score-box">
+    						<span>NGR 1 - BIH 0</span><span class="match-date"><a href="http://www.fifa.com/worldcup/matches/round=255931/match=300186511/index.html#nosticky" target="_blank">June 21</a></span>
+    					</div>
+    					<div class="score-box">
+    						<span>NGR <input class="newscore" id="5NGR" type="text" maxlength="1"> - ARG <input class="newscore" id="5ARG" type="text" maxlength="1"></span><span class="match-date"><a href="http://www.fifa.com/worldcup/matches/round=255931/match=300186458/index.html#nosticky" target="_blank">June 25</a></span>
+    					</div>
+    					<div class="score-box">
+    						<span>BIH <input class="newscore" id="6BIH" type="text" maxlength="1"> - IRN <input class="newscore" id="6IRN" type="text" maxlength="1"></span><span class="match-date"><a href="http://www.fifa.com/worldcup/matches/round=255931/match=300186464/index.html#nosticky" target="_blank">June 25</a></span>
+    					</div>
+    				</div>
+  				</div>
+			</div>
+
+			<div class="panel">
+  				The advancing teams are decided by the following rules <a href="http://www.uefa.com/MultimediaFiles/Download/competitions/Regulations/01/87/54/21/1875421_DOWNLOAD.pdf">(excerpted and paraphrased from here)</a>:
+			<ul>
+				<li>Points earned in all matches</li>
+				<b>Ties determined by:</b>
+				<li>Goal difference in all matches (goals scored minus goals scored against you)</li>
+				<li>Goals scored in all matches</li>
+				<li>Points obtained in group matches between tied teams</li>
+				<li>Goal difference in group matches between tied teams</li>
+				<li>Goals scored in group matches between tied teams</li>
+				<li>Drawing by FIFA Organizing Committee</li>
+			</ul>
+
+  				</div>
+			</div>
+	
+		</div>
+
+
+			
+	
+	</div>
+
+
+<style>
+	.match-scores {
+		float: right;
+		min-width: 25%;
+		max-width: 25%;
+	}
+
+	.standings {
+		float: left;
+		min-width: 65%;	
+		max-width: 65%;
+	}
+
+
+
+	.standings-table th {
+		font-size: 16px	;
+		padding-bottom: 15px;
+	}
+
+	.standings-table th {
+		padding-right: 0 65px 0 15px;
+	}
+
+	.standings-table td {
+		padding-right: 65px;
+		font-size: 25px	;
+		padding-bottom: 30px;
+	}
+
+
+	.match-scores input {
+		width: 30px;
+		height: 31px;
+		border: none;
+		border-bottom: 1px red dotted;
+		background-color: #dff0d8;
+		padding-left: 6px;
+
+	}
+
+	.score-box {
+		margin-bottom: 20px;
+		font-size: 22px;
+	}
+
+	.match-date {
+		font-style: italic;
+		float: right;
+		padding-right: 20px;
+		font-size: 12px;
+	}
+</style>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="/static/js/wc.js"></script>
+{% endblock %}
