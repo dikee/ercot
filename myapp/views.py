@@ -22,6 +22,11 @@ def underwrite(uw_unique):
     return render_template('uw.html', claims=claims)
 
 
+@app.route('/ramona-dike')
+def wedding():
+    return '<html>Website coming soon<br>Wedding on June 6th</html>'
+
+
 @app.route('/changeassumptions/<uw_unique>', methods=['POST'])
 def change_assumptions(uw_unique):
     claims = get_uw_example_by_unique(uw_unique)
